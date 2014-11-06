@@ -55,7 +55,9 @@ createdb () {
     $asweb psql -d $dbname -c 'ALTER TABLE geometry_columns OWNER TO "www-data"; ALTER TABLE spatial_ref_sys OWNER TO "www-data";'
 
     # Add the 900913 Spatial Reference System
-    $asweb psql -d $dbname -f /usr/local/share/osm2pgsql/900913.sql
+    $asweb psql -d $dbname -f /usr/share/osm2pgsql/osm2pgsql/900913.sql
+
+    echo "DB CREATED. Can exit now!"
 }
 
 import () {

@@ -6,5 +6,6 @@
 
 # Activate the Ubuntu Apache environment
 . /etc/apache2/envvars
+mkdir -p $APACHE_RUN_DIR $APACHE_LOCK_DIR $APACHE_LOG_DIR
 
 exec /usr/sbin/apache2 -k start -DNO_DETACH

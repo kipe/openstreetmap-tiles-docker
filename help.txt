@@ -16,24 +16,34 @@ Commands:
   cli              Drop into a bash shell
   dropdb           Drop the osm database
 
-Set up a database saved on an external volume:
-  The following command will initialise the postgresql database on an external
-  volume that can be used to persist the data:
+#########################################
+#     _____ _____ _____ _____ _____     #
+#    |  |  |   __|  _  |   __|   __|    #
+#    |  |  |__   |     |  |  |   __|    #
+#    |_____|_____|__|__|_____|_____|    #
+#                                       #
+#########################################
 
-  docker run -v /data/osm-postgresql:/var/lib/postgresql homme/openstreetmap-tiles \
-         initdb startdb createuser createdb migrate
+# Set up a database saved on an external volume:
+##    The following command will initialise the postgresql database on an external
+##    volume that can be used to persist the data:
 
-Import data:
-  The following will import the .osm file at `/tmp/import.osm` into the
-  database.
+rm -rf /data/osm-postgresql && mkdir -p /data/osm-postgresql
+docker run --rm -v /data/osm-postgresql:/var/lib/postgresql carcinogen75/tile-server \
+         initdb startdb createuser createdb die
 
-  docker run -v /data/osm-postgresql:/var/lib/postgresql -v /tmp:/data homme/openstreetmap-tiles \
-         startdb import
+################################################
+# Import data:
+##    The following will import the .osm file at `/tmp/import.osm` into the
+##    database.
 
-Start the webserver:
-  Once data is loaded and users have been created run the webserver:
+wget -O /tmp/import.pbf http://be.gis-lab.info/data/osm_dump/dump/latest/RU-VLA.osm.pbf
+docker run --rm -v /data/osm-postgresql:/var/lib/postgresql -v /tmp:/data carcinogen75/tile-server \
+         startdb import die
 
-  docker run -P -v /data/osm-postgresql:/var/lib/postgresql homme/openstreetmap-tiles \
-         startdb startservices
+################################################
+# Start the webserver:
+##    Once data is loaded and users have been created run the webserver
 
-For further information run the cli and look at /usr/local/share/doc/README.md.
+docker run --rm -p 8080:80 -v /data/osm-postgresql:/var/lib/postgresql \
+         carcinogen75/tile-server startdb startservices

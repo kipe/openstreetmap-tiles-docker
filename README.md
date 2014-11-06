@@ -3,7 +3,8 @@
 This repository contains instructions for building a
 [Docker](https://www.docker.io/) image containing the OpenStreetMap tile
 serving software stack.  It is based on the
-[Switch2OSM instructions](http://switch2osm.org/serving-tiles/manually-building-a-tile-server-12-04/).
+[Switch2OSM instructions](http://switch2osm.org/serving-tiles/building-a-tile-server-from-packages/).
+Based on another docker-container [homme/openstreetmap-tiles](https://registry.hub.docker.com/u/homme/openstreetmap-tiles/)
 
 As well as providing an easy way to set up and run the tile serving software it
 also provides instructions for managing the back end database, allowing you to:
@@ -28,9 +29,6 @@ includes:
 * The latest [Mod_Tile](http://wiki.openstreetmap.org/wiki/Mod_tile) code (at
   the time of image creation)
 
-## Issues
+## Usage
 
-This is a work in progress and although generally adequate it could benefit
-from improvements.  Please
-[submit issues](https://github.com/geo-data/openstreetmap-tiles-docker/issues)
-on GitHub. Pull requests are very welcome!
+Read [help file](help.txt)
