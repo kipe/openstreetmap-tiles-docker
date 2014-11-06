@@ -13,8 +13,6 @@ also provides instructions for managing the back end database, allowing you to:
 * Import OSM data into the database
 * Drop the database
 
-Run `docker run homme/openstreetmap-tiles` for usage instructions.
-
 ## About
 
 The container runs Ubuntu 14.04 (Trusty) and is based on the
