@@ -36,7 +36,7 @@ Read [help file](help.txt)
 docker build -t osm .
 mkdir -p /data/osm-postgresql
 docker run --rm -v /data/osm-postgresql:/var/lib/postgresql osm initdb startdb createuser createdb die
-docker run --rm -v /data/osm-postgresql:/var/lib/postgresql -v /tmp:/data osm startdb import die
 wget -O /tmp/import.pbf http://download.geofabrik.de/europe/finland-latest.osm.pbf
+docker run --rm -v /data/osm-postgresql:/var/lib/postgresql -v /tmp:/data osm startdb import die
 docker run --rm -p 8080:80 -v /data/osm-postgresql:/var/lib/postgresql osm startdb startservices
 ```
